@@ -8,5 +8,11 @@ Parser CLI for libyaml
 Print parse events for a YAML file:
 
 ```
-$ libyaml-parser file.yaml
+make build
+./libyaml-parser some-file.yaml
+```
+
+With Docker:
+```
+docker run -i -v $PWD:/cwd/ ingy/libyaml-parser some-file.yaml
 ```

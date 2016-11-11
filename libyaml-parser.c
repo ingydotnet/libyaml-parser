@@ -73,7 +73,7 @@ main(int argc, char *argv[])
                     printf("YAML_SEQUENCE_END_EVENT\n");
                     break;
                 case YAML_SCALAR_EVENT:
-                    printf("YAML_SCALAR_EVENT\n");
+                    printf("YAML_SCALAR_EVENT \"%s\"\n", event.data.scalar.value);
                     break;
                 case YAML_ALIAS_EVENT:
                     printf("YAML_ALIAS_EVENT\n");
