@@ -1,21 +1,28 @@
-FROM ubuntu
+FROM alpine:3.4
 
-RUN apt-get update \
- && apt-get install -y \
-        build-essential \
+RUN apk update \
+ && apk add \
+        build-base \
+ && true
+
+RUN apk add \
+        autoconf \
+        automake \
         git \
-        gist vim \
+        libc6-compat \
+        libtool \
  && true
 
 COPY $PWD/ /libyaml-parser/
 
-RUN apt-get install -y \
-        autoconf \
-        libtool \
- && true
-
-RUN (cd /libyaml-parser/ && make clean build)
-
-WORKDIR /cwd/
+RUN \
+(   cd /libyaml-parser/  \
+ && export LD_LIBRARY_PATH=$PWD/libyaml/src/.libs \
+ && make clean build \
+)
 
 ENTRYPOINT ["/libyaml-parser/libyaml-parser"]
+
+ENV LD_LIBRARY_PATH=/libyaml-parser/libyaml/src/.libs
+
+WORKDIR /cwd

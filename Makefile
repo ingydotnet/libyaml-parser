@@ -43,7 +43,7 @@ push: docker
 	docker push $(DOCKER_IMAGE)
 
 shell: docker
-	docker run -it --entrypoint=/bin/bash $(DOCKER_IMAGE)
+	docker run -it --entrypoint=/bin/sh $(DOCKER_IMAGE)
 
 clean:
 	rm -fr libyaml libyaml-parser
