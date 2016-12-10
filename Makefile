@@ -1,7 +1,7 @@
 LIBYAML_REPO ?= https://github.com/yaml/libyaml
 LIBYAML_BRANCH ?= master
 DOCKER_NAME ?= libyaml-parser
-DOCKER_USER ?= ingy
+DOCKER_USER ?= $(USER)
 DOCKER_TAG ?= latest
 DOCKER_IMAGE ?= $(DOCKER_USER)/$(DOCKER_NAME):$(DOCKER_TAG)
 

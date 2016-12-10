@@ -3,26 +3,37 @@ libyaml-parser
 
 Parser CLI for libyaml
 
-# Try it Now:
+# Try it Now with Docker:
 
 ```
 curl -s https://raw.githubusercontent.com/ingydotnet/libyaml-parser/master/test/example-2.27-invoice.yaml | docker run -iv $PWD:/cwd ingy/libyaml-parser
 ```
 
-# Usage
-
-Print parse events for YAML files (or stdin):
+# Synopsis
 
 ```
-libyaml-parser file1.yaml file2.yaml ...
-cat file.yaml | libyaml-parser
+git clone https://github.com/ingydotnet/libyaml-parser
+cd libyaml-parser
+make build
+make test
+```
+
+# Usage
+
+Print parse events for a YAML file (or stdin):
+
+```
+./libyaml-parser file.yaml
+./libyaml-parser < file.yaml
+cat file.yaml | ./libyaml-parser
 ```
 
 Run with Docker:
 
 ```
 alias my-yaml-parser='docker run -iv $PWD:/cwd ingy/libyaml-parser'
-my-yaml-parser file1.yaml file2.yaml ...
+my-yaml-parser file.yaml
+my-yaml-parser < file.yaml
 cat file.yaml | my-yaml-parser
 ```
 
@@ -37,6 +48,5 @@ make build
 ## Docker Image Build
 
 ```
-docker run -i -v $PWD:/cwd/ ingy/libyaml-parser some-file.yaml
-make docker
+DOCKER_USER=ingy make docker
 ```
