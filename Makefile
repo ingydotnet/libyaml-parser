@@ -26,6 +26,7 @@ libyaml-parser: $(LIBYAML_DIR)/tests/.libs/run-parser
 
 $(LIBYAML_DIR)/tests/.libs/run-parser: $(LIBYAML_DIR)/tests/run-parser.c $(LIBYAML_DIR)/Makefile
 	make -C $(LIBYAML_DIR)
+	(cd $(LIBYAML_DIR) && git checkout tests/run-parser.c)
 
 $(LIBYAML_DIR)/tests/run-parser.c: libyaml-parser.c $(LIBYAML_DIR)
 	cp $< $@
