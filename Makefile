@@ -1,3 +1,4 @@
+LIBYAML_DIR ?= libyaml
 LIBYAML_REPO ?= https://github.com/yaml/libyaml
 LIBYAML_BRANCH ?= master
 DOCKER_NAME ?= libyaml-parser
@@ -20,16 +21,16 @@ help:
 
 build: libyaml-parser
 
-libyaml-parser: libyaml/tests/.libs/run-parser
+libyaml-parser: $(LIBYAML_DIR)/tests/.libs/run-parser
 	cp $< $@
 
-libyaml/tests/.libs/run-parser: libyaml/tests/run-parser.c libyaml/Makefile
-	make -C libyaml
+$(LIBYAML_DIR)/tests/.libs/run-parser: $(LIBYAML_DIR)/tests/run-parser.c $(LIBYAML_DIR)/Makefile
+	make -C $(LIBYAML_DIR)
 
-libyaml/tests/run-parser.c: libyaml-parser.c libyaml
+$(LIBYAML_DIR)/tests/run-parser.c: libyaml-parser.c $(LIBYAML_DIR)
 	cp $< $@
 
-libyaml/Makefile: libyaml
+$(LIBYAML_DIR)/Makefile: $(LIBYAML_DIR)
 	( cd $< && ./bootstrap && ./configure )
 	touch $@
 
